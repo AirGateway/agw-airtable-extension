@@ -1,4 +1,4 @@
-# AirTable Extension: AirGateway Setup
+# AirTable Extension
 
 ## Overview
 
