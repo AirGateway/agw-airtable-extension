@@ -4,7 +4,7 @@
  */
 import React from "react";
 import { FieldType } from "@airtable/blocks/models";
-import { initializeBlock, useBase, useSession } from "@airtable/blocks/ui";
+import { Box, Text, Button, initializeBlock, useBase, useSession } from "@airtable/blocks/ui";
 import { default as Orders } from "./tables/orders";
 import { default as Tickets } from "./tables/tickets";
 
@@ -112,11 +112,24 @@ async function bootstrap() {
 }
 
 function Main() {
-  bootstrap()
-    .then((result) => console.log(result))
-    .catch((error) => console.log(error));
+  // bootstrap()
+  //   .then((result) => console.log(result))
+  //   .catch((error) => console.log(error));
 
-  return <div>Testing bootstrap🚀</div>;
+  return <Box
+    display="flex"
+    alignItems="center"
+    flexDirection="column"
+    justifyContent="center"
+    width="100%"
+    height="100vh"
+    overflow="hidden"
+  >
+    <Text fontWeight="500">You must be authorized to run this extension in this base</Text>
+    <Button onClick={bootstrap} size="large" marginTop="25px" variant="primary">
+      Setup Tables
+    </Button>
+  </Box>;
 }
 
 initializeBlock(() => <Main />);
