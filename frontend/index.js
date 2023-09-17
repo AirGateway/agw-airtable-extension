@@ -2,7 +2,7 @@
  * Airgateway extension for bootstrapping collection of tables
  * definitions automatically via @airtable/blocks package
  */
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { FieldType } from "@airtable/blocks/models";
 import {
   Box,
@@ -89,10 +89,7 @@ async function linkDefinitions(
   }
 }
 
-async function setupTables() {
-  const session = useSession();
-  const base = useBase();
-
+async function setupTables(base,session) {
   authorize(session, base);
 
   for (const definition of definitions) {
@@ -120,12 +117,14 @@ async function setupTables() {
 function Main() {
   const [error, setError] = useState(null);
   const [done, setDone] = useState(false);
+  const base = useBase();
+  const session = useSession();
 
-  const bootstrap = async () => {
+  const bootstrap = async (base,session) => {
     try {
-      await setupTables();
+      await setupTables(base,session);
       setError(null);
-      setDone(true)
+      setDone(true);
     } catch (err) {
       setError(err);
       setDone(false);
@@ -151,7 +150,11 @@ function Main() {
         <Text fontWeight="500">All done setting up tables</Text>
       )}
       <Button
-        onClick={bootstrap}
+        base={base}
+        session={session}
+        onClick={() => {
+          bootstrap(base,session);
+        }}
         size="large"
         marginTop="25px"
         variant="primary"

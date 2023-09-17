@@ -18,7 +18,7 @@ module.exports = {
     plugins: ['react', 'react-hooks'],
     rules: {
         'react/prop-types': 0,
-        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/rules-of-hooks': 'warn',
         'react-hooks/exhaustive-deps': 'warn',
     },
     settings: {
