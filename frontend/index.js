@@ -2,9 +2,16 @@
  * Airgateway extension for bootstrapping collection of tables
  * definitions automatically via @airtable/blocks package
  */
-import React from "react";
+import { React, useState } from "react";
 import { FieldType } from "@airtable/blocks/models";
-import { Box, Text, Button, initializeBlock, useBase, useSession } from "@airtable/blocks/ui";
+import {
+  Box,
+  Text,
+  Button,
+  initializeBlock,
+  useBase,
+  useSession,
+} from "@airtable/blocks/ui";
 import { default as Orders } from "./tables/orders";
 import { default as Tickets } from "./tables/tickets";
 
@@ -45,7 +52,7 @@ async function linkDefinitions(
   columnFromTableOne,
   columnFromTableTwo,
   definitionOne,
-  definitionTwo,
+  definitionTwo
 ) {
   const tableOneName = definitionOne.Table;
   const tableTwoName = definitionTwo.Table;
@@ -72,18 +79,17 @@ async function linkDefinitions(
   const fieldTwo = tableTwo.getFieldByNameIfExists(columnFromTableTwo);
 
   if (fieldTwo == null) {
-      await tableTwo.createFieldAsync(
-        columnFromTableTwo,
-        FieldType.MULTIPLE_RECORD_LINKS,
-        {
-          linkedTableId: tableOne.id,
-        }
-      );
+    await tableTwo.createFieldAsync(
+      columnFromTableTwo,
+      FieldType.MULTIPLE_RECORD_LINKS,
+      {
+        linkedTableId: tableOne.id,
+      }
+    );
   }
 }
 
-async function bootstrap() {
- 
+async function setupTables() {
   const session = useSession();
   const base = useBase();
 
@@ -112,24 +118,48 @@ async function bootstrap() {
 }
 
 function Main() {
-  // bootstrap()
-  //   .then((result) => console.log(result))
-  //   .catch((error) => console.log(error));
+  const [error, setError] = useState(null);
+  const [done, setDone] = useState(false);
 
-  return <Box
-    display="flex"
-    alignItems="center"
-    flexDirection="column"
-    justifyContent="center"
-    width="100%"
-    height="100vh"
-    overflow="hidden"
-  >
-    <Text fontWeight="500">You must be authorized to run this extension in this base</Text>
-    <Button onClick={bootstrap} size="large" marginTop="25px" variant="primary">
-      Setup Tables
-    </Button>
-  </Box>;
+  const bootstrap = async () => {
+    try {
+      await setupTables();
+      setError(null);
+      setDone(true)
+    } catch (err) {
+      setError(err);
+      setDone(false);
+    }
+  };
+  return (
+    <Box
+      display="flex"
+      alignItems="center"
+      flexDirection="column"
+      justifyContent="center"
+      width="100%"
+      height="100vh"
+      overflow="hidden"
+    >
+      {error ? (
+        <Text fontWeight="500">{error.message}</Text>
+      ) : !done ? (
+        <Text fontWeight="500">
+          Click the button below to setup tables in this base
+        </Text>
+      ) : (
+        <Text fontWeight="500">All done setting up tables</Text>
+      )}
+      <Button
+        onClick={bootstrap}
+        size="large"
+        marginTop="25px"
+        variant="primary"
+      >
+        Setup Tables
+      </Button>
+    </Box>
+  );
 }
 
 initializeBlock(() => <Main />);
