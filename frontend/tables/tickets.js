@@ -11,6 +11,7 @@ const TYPE_CODE_DEFINITION = "TypeCodeDefinition";
 const PRICE = "Price";
 const TYPE_CODE = "TypeCode";
 const TIME_OF_ISSUE = "TimeOfIssue";
+const LINKED_TO = "LinkedTo";
 const REMARK = "Remark";
 
 const ticketTypes = {
@@ -22,6 +23,9 @@ export default {
   Table: TICKETS,
   Fields: {
     [TICKET_NUMBER]: {
+      type: FieldType.SINGLE_LINE_TEXT,
+    },
+    [LINKED_TO]: {
       type: FieldType.SINGLE_LINE_TEXT,
     },
     [PASSENGER_REF]: {
