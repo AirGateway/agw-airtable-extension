@@ -25,10 +25,18 @@ The AirGateway Setup extension is a powerful tool designed to streamline the pro
 
    - [ ] Open your AirTable workspace.
    - [ ] Click on the Extensions tab in the left-hand sidebar.
+  
    - [ ] Search for "AirGateway Setup" in the Extensions Marketplace.
    - [ ] Click the "Install" button to add the extension to your workspace.
 
 3. **Configuration:** Once installed, follow the on-screen instructions to configure the extension according to your base's requirements.
+
+ ![setup-1](./images/step-1.png)
+ ![setup-2](./images/step-2.1.png)
+ ![setup-3](./images/step-3.png)
+ ![setup-4](./images/step-4.png)
+ ![setup-5](./images/step-5.png)
+ ![setup-6](./images/step-6.png)
 
 ## Support and Feedback
 
