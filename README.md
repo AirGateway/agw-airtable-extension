@@ -1,5 +1,12 @@
 # AirTable Extension
-<div style="position: relative; padding-bottom: 64.86486486486486%; height: 0;"><iframe src="https://www.loom.com/embed/5031cab52e84464882fc3f38a7439d07?sid=acdab45c-2c69-4ce1-8fa6-1e484b2e390c" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+<div>
+    <a href="https://www.loom.com/share/5031cab52e84464882fc3f38a7439d07">
+      <p>Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/5031cab52e84464882fc3f38a7439d07">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/5031cab52e84464882fc3f38a7439d07-with-play.gif">
+    </a>
+  </div>
 
 ## Overview
 
